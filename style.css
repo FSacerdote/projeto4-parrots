@@ -52,9 +52,9 @@ h1{
     width: 100px;
     height: 100px;
 }
-.selecionada .back-face{
+.virada .back-face{
     transform: rotateY(0deg);
 }
-.selecionada .front-face{
+.virada .front-face{
     transform: rotateY(-180deg);
 }
