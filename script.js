@@ -26,12 +26,12 @@ function jogoNovo(){
     container.innerHTML = "";
     for (let i = 0; i < nCartas; i++){
         container.innerHTML += `
-        <div id="${i}" class="card" onclick="selecionaCarta(this)">
+        <div id="${i}" data-test="card" class="card" onclick="selecionaCarta(this)">
             <div class="front-face face" >
-                <img src="imagens/back.png" alt=""/>
+                <img data-test="face-down-image" src="imagens/back.png" alt=""/>
             </div>
             <div class="back-face face">
-                <img src="imagens/${listaImagens[i]}" alt=""/>
+                <img data-test="face-up-image" src="imagens/${listaImagens[i]}" alt=""/>
             </div>
         </div>`
     }
