@@ -22,7 +22,7 @@ h1{
     flex-wrap: wrap;
     justify-content: center;
     gap: 34px;
-    width: 80%;
+    width: 90%;
 }
 .card {
     width: 200px;
