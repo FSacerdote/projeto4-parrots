@@ -65,12 +65,15 @@ function selecionaCarta(carta){
         }
         
     }
+    setTimeout(fimDeJogo,2000);
+}
+function fimDeJogo(){
     if(document.querySelectorAll(".virada").length == nCartas){
         clearInterval(idContador);
         alert(`Você ganhou em ${njogadas} jogadas! A duração do jogo foi de ${contador} segundos!`);
         let reiniciar = prompt("Gostaria de jogar de novo?");
         while (reiniciar !== "não" && reiniciar !== "sim"){
-            reiniciar = prompt("Gostaria de jogar de novo? (sim ou não)")
+            reiniciar = prompt("Gostaria de jogar de novo? (sim ou não)");
         }
         if (reiniciar === "sim"){
             jogoNovo();
@@ -91,7 +94,6 @@ function cronometro(){
     const marcador = document.querySelector(".contador");
     marcador.innerHTML = contador;
 }
-
 //----//
 function comparador() { 
 	return Math.random() - 0.5; 
