@@ -2,11 +2,15 @@ let nCartas = 0;
 let cartasViradas = 0;
 let cartasSelecionadas = 0;
 let listaImagens = [];
-let njogadas = 0;
+let njogadas;
+let contador;
+let idContador;
 const imgs = ["bobrossparrot.gif","explodyparrot.gif","fiestaparrot.gif","metalparrot.gif","revertitparrot.gif","tripletsparrot.gif","unicornparrot.gif"];
 jogoNovo();
 
 function jogoNovo(){
+    contador = 0;
+    njogadas = 0;
     nCartas = 0;
     while(nCartas > 14 || nCartas < 4 || nCartas%2 === 1 ){
         nCartas = prompt("Quantas cartas? (numero par entre 4 - 14)");
@@ -31,6 +35,9 @@ function jogoNovo(){
             </div>
         </div>`
     }
+    const marcador = document.querySelector(".contador");
+    marcador.innerHTML = contador;
+    idContador = setInterval(cronometro, 1000);
 }
 function selecionaCarta(carta){
     if(carta.classList.contains("selecionada"))
@@ -59,7 +66,15 @@ function selecionaCarta(carta){
         
     }
     if(document.querySelectorAll(".virada").length == nCartas){
-        alert(`Você ganhou em ${njogadas} jogadas!`);
+        clearInterval(idContador);
+        alert(`Você ganhou em ${njogadas} jogadas! A duração do jogo foi de ${contador} segundos!`);
+        let reiniciar = prompt("Gostaria de jogar de novo?");
+        while (reiniciar !== "não" && reiniciar !== "sim"){
+            reiniciar = prompt("Gostaria de jogar de novo? (sim ou não)")
+        }
+        if (reiniciar === "sim"){
+            jogoNovo();
+        }
     }
 }
 function desvira(){
@@ -71,6 +86,12 @@ function desvira(){
     }
     
 }
+function cronometro(){
+    contador++;
+    const marcador = document.querySelector(".contador");
+    marcador.innerHTML = contador;
+}
+
 //----//
 function comparador() { 
 	return Math.random() - 0.5; 
