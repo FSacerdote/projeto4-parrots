@@ -1,5 +1,4 @@
 let nCartas = 0;
-let cartasViradas = 0;
 let cartasSelecionadas = 0;
 let listaImagens = [];
 let njogadas;
@@ -19,9 +18,9 @@ function jogoNovo(){
     listaImagens = [];
     for (let i = 0; i < (nCartas/2); i++) {
         listaImagens.push(imgs[i]);
-        listaImagens.push(imgs[i]);          
+        listaImagens.push(imgs[i]);
     }
-    listaImagens.sort(comparador); 
+    listaImagens.sort(comparador);
     const container = document.querySelector(".container");
     container.innerHTML = "";
     for (let i = 0; i < nCartas; i++){
@@ -33,15 +32,14 @@ function jogoNovo(){
             <div class="back-face face">
                 <img data-test="face-up-image" src="imagens/${listaImagens[i]}" alt=""/>
             </div>
-        </div>`
+        </div>`;
     }
     const marcador = document.querySelector(".contador");
     marcador.innerHTML = contador;
     idContador = setInterval(cronometro, 1000);
 }
 function selecionaCarta(carta){
-    if(carta.classList.contains("selecionada"))
-    {
+    if(carta.classList.contains("selecionada")){
         return;
     }
     cartasSelecionadas++;
@@ -53,8 +51,8 @@ function selecionaCarta(carta){
     carta.classList.add("virada");
     if(cartasSelecionadas === 2){
         const viradas = document.querySelectorAll(".selecionada");
-        let id1 = viradas[0].id;
-        let id2 = viradas[1].id;
+        const id1 = viradas[0].id;
+        const id2 = viradas[1].id;
         if (listaImagens[id1] === listaImagens[id2]) {
             for(let i = 0; i < 2; i++){
                 viradas[i].classList.remove("selecionada");
@@ -63,12 +61,11 @@ function selecionaCarta(carta){
         }else{
             setTimeout(desvira,1000);
         }
-        
     }
     setTimeout(fimDeJogo,2000);
 }
 function fimDeJogo(){
-    if(document.querySelectorAll(".virada").length == nCartas){
+    if(document.querySelectorAll(".virada").length === Number(nCartas)){
         clearInterval(idContador);
         alert(`Você ganhou em ${njogadas} jogadas! A duração do jogo foi de ${contador} segundos!`);
         let reiniciar = prompt("Você gostaria de reiniciar a partida? (sim ou não)");
@@ -87,7 +84,6 @@ function desvira(){
         viradas[i].classList.remove("selecionada");
         viradas[i].classList.remove("virada");
     }
-    
 }
 function cronometro(){
     contador++;
@@ -95,6 +91,6 @@ function cronometro(){
     marcador.innerHTML = contador;
 }
 //----//
-function comparador() { 
-	return Math.random() - 0.5; 
+function comparador() {
+    return Math.random()-0.5; 
 }
