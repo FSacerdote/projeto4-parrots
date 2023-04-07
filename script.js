@@ -2,10 +2,12 @@ let nCartas = 0;
 let cartasViradas = 0;
 let cartasSelecionadas = 0;
 let listaImagens = [];
+let njogadas = 0;
 const imgs = ["bobrossparrot.gif","explodyparrot.gif","fiestaparrot.gif","metalparrot.gif","revertitparrot.gif","tripletsparrot.gif","unicornparrot.gif"];
 jogoNovo();
 
 function jogoNovo(){
+    nCartas = 0;
     while(nCartas > 14 || nCartas < 4 || nCartas%2 === 1 ){
         nCartas = prompt("Quantas cartas? (numero par entre 4 - 14)");
     }
@@ -17,6 +19,7 @@ function jogoNovo(){
     }
     listaImagens.sort(comparador); 
     const container = document.querySelector(".container");
+    container.innerHTML = "";
     for (let i = 0; i < nCartas; i++){
         container.innerHTML += `
         <div id="${i}" class="card" onclick="selecionaCarta(this)">
@@ -38,6 +41,7 @@ function selecionaCarta(carta){
     if (cartasSelecionadas > 2){
         return;
     }
+    njogadas++;
     carta.classList.add("selecionada");
     carta.classList.add("virada");
     if(cartasSelecionadas === 2){
@@ -53,6 +57,9 @@ function selecionaCarta(carta){
             setTimeout(desvira,1000);
         }
         
+    }
+    if(document.querySelectorAll(".virada").length == nCartas){
+        alert(`Você ganhou em ${njogadas} jogadas!`);
     }
 }
 function desvira(){
