@@ -68,12 +68,14 @@ function fimDeJogo(){
     if(document.querySelectorAll(".virada").length === Number(nCartas)){
         clearInterval(idContador);
         alert(`Você ganhou em ${njogadas} jogadas! A duração do jogo foi de ${contador} segundos!`);
-        let reiniciar = prompt("Você gostaria de reiniciar a partida? (sim ou não)");
+        let reiniciar;
         while (reiniciar !== "não" && reiniciar !== "sim"){
             reiniciar = prompt("Você gostaria de reiniciar a partida? (sim ou não)");
         }
         if (reiniciar === "sim"){
             jogoNovo();
+        }else{
+            nCartas = 0;
         }
     }
 }
