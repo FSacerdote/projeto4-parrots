@@ -25,8 +25,8 @@ function jogoNovo(){
     container.innerHTML = "";
     for (let i = 0; i < nCartas; i++){
         container.innerHTML += `
-        <div id="${i}" data-test="card" class="card" onclick="selecionaCarta(this)">
-            <div class="front-face face" >
+        <div id="${i}" data-test="card" class="card">
+            <div class="front-face face"  onclick="selecionaCarta(this)">
                 <img data-test="face-down-image" src="imagens/back.png" alt=""/>
             </div>
             <div class="back-face face">
@@ -47,8 +47,8 @@ function selecionaCarta(carta){
         return;
     }
     njogadas++;
-    carta.classList.add("selecionada");
-    carta.classList.add("virada");
+    carta.parentNode.classList.add("selecionada");
+    carta.parentNode.classList.add("virada");
     if(cartasSelecionadas === 2){
         const viradas = document.querySelectorAll(".selecionada");
         const id1 = viradas[0].id;
